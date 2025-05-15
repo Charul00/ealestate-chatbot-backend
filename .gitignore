@@ -1,0 +1,29 @@
+# Python / Django
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+env/
+venv/
+ENV/
+db.sqlite3
+
+# React / Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.npm/
+.DS_Store
+
+# Static files
+staticfiles/
+media/uploads/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
