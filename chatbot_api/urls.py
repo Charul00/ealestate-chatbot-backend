@@ -6,9 +6,14 @@ import os
 RENDER = os.environ.get('RENDER', 'False').lower() == 'true'
 
 if RENDER:
-    # Use simplified API for Render deployment 
-    from .api_render import QueryView, FileUploadView
-    print("Using simplified API for Render deployment")
+    try:
+        # Use simplified API for Render deployment 
+        from .api_render import QueryView, FileUploadView
+        print("Using simplified API for Render deployment")
+    except ImportError:
+        # Fallback to full API if there's an issue with the import
+        from .api import ChatbotQueryView as QueryView, FileUploadView
+        print("Fallback to full API implementation")
 else:
     # Use full API implementation for local development
     from .api import ChatbotQueryView as QueryView, FileUploadView
