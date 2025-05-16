@@ -6,7 +6,7 @@ Set these environment variables in your Render dashboard:
 
 1. `SECRET_KEY` - A Django secret key for security
 2. `DEBUG` - Set to 'False' for production
-3. `RENDER` - Set to 'True' to indicate Render deployment
+3. `RENDER` - Set to 'True' to indicate Render deployment (critical for optimized API selection)
 4. `ALLOWED_HOSTS` - Add your Render domain, e.g., 'realestate-chatbot-api.onrender.com'
 5. `OPENAI_API_KEY` - Your OpenAI API key for chat completions (if using OpenAI)
 

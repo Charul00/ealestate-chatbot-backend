@@ -1,12 +1,16 @@
 from django.urls import path
 from .views import home
+import os
 
-# Try to import from api_render (simplified version for Render), 
-# fall back to regular api if not available
-try:
+# Check if running on Render (via environment variable)
+RENDER = os.environ.get('RENDER', 'False').lower() == 'true'
+
+if RENDER:
+    # Use simplified API for Render deployment 
     from .api_render import QueryView, FileUploadView
     print("Using simplified API for Render deployment")
-except ImportError:
+else:
+    # Use full API implementation for local development
     from .api import ChatbotQueryView as QueryView, FileUploadView
     print("Using full API implementation")
 
