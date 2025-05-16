@@ -28,6 +28,11 @@ Set these environment variables in your Render dashboard:
 3. If OpenAI integration fails:
    - The application should fall back to demo mode automatically
 
+4. If you see import errors related to API views:
+   - The application is set up to try the simplified API implementation first
+   - Make sure the `RENDER` environment variable is set to `True`
+   - There is a fallback mechanism in place to use the full API if needed
+
 ## Connecting Frontend
 
 Update your frontend to use the deployed API URL:
