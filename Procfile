@@ -1,1 +1,1 @@
-web: gunicorn realestate_project.wsgi:application
+web: ./run.sh

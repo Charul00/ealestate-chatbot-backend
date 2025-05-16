@@ -1,18 +1,23 @@
 import os
-from openai import OpenAI
-from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv()
-
-# Initialize OpenAI client
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-# If API key is not set, we'll provide a fallback summary function
-if OPENAI_API_KEY:
-    client = OpenAI(api_key=OPENAI_API_KEY)
-else:
+# Simple version for free tier deployment
+try:
+    from openai import OpenAI
+    from dotenv import load_dotenv
+    # Load environment variables
+    load_dotenv()
+    
+    # Initialize OpenAI client
+    OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+    if OPENAI_API_KEY:
+        client = OpenAI(api_key=OPENAI_API_KEY)
+    else:
+        client = None
+        print("Warning: OPENAI_API_KEY not found. Will use fallback summary generation.")
+except ImportError:
+    # If openai or dotenv packages aren't installed, use fallback mode
     client = None
-    print("Warning: OPENAI_API_KEY not found. Will use fallback summary generation.")
+    print("OpenAI and/or dotenv packages not installed. Using fallback summary generation.")
 
 def generate_summary(data_context, query):
     """

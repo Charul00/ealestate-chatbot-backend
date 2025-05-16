@@ -129,7 +129,14 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Use simpler whitenoise storage for better compatibility with free tier
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
+# Skip collectstatic on Render deployment
+import sys
+if 'collectstatic' in sys.argv and os.environ.get('RENDER', '') == 'true':
+    sys.exit(0)
 
 # Media files
 MEDIA_URL = '/media/'
